@@ -1,0 +1,68 @@
+﻿@model RMS.Model.viewModes.MenuDTOs
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.MenuID);
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="mx-auto">
+            <div class="card">
+                <div class="form-horizontal">
+                    <div class="card-header text-center pt-4">
+                        <span>
+                            <a href="/Menu" style=" float:left;">
+                                <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                            </a>
+                        </span>
+                        <span style="font-size: 30px; font-weight: bold; color:black;">Edit Menu</span>
+                        
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+
+                            <label style="font-weight: bold;font-size: 1.3em;">Menu Name</label>   <br />
+                            @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.MenuName, "", new { @class = "form-control", @placeholder = "Enter Menu Name" })
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label style="font-weight: bold;font-size: 1.3em;">Menu Price</label>   <br />
+                            @Html.ValidationMessageFor(model => model.MenuPrice, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.MenuPrice, "", new { @class = "form-control", @placeholder = "Enter Menu Price" })
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label style="font-weight: bold;font-size: 1.3em;">Sub Category</label>   <br />
+                            @Html.ValidationMessageFor(model => model.SubCategoryID, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(x => x.SubCategoryID, new SelectList(Model.DishSubCategories, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label style="font-weight: bold;font-size: 1.3em;">Image Path</label><br />
+                            @Html.TextBoxFor(model => model.ImagePath, "", new { type = "file", @class = "form control" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

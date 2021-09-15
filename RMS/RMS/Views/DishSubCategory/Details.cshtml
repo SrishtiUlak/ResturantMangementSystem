@@ -1,0 +1,39 @@
+﻿@model RMS.Model.viewModes.DishSubCategoryDTOs
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container" style="margin-top: 2%;">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/DishSubCategory" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Sub Category Details</samp>
+            </div>
+            <div class="card-body">
+
+                <div class="mb-3">
+
+                    @*<label style="font-weight: bold;font-size: 1.3em;">Dish Category ID</label>   <br />
+                    @Html.DisplayFor(model => model.SubCategoryId)*@
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Category</label>   <br />
+                    @Html.DisplayFor(model => model.SubCategoryName)
+
+                </div>
+                <div>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.SubCategoryId })</spam>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.SubCategoryId })</spam>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

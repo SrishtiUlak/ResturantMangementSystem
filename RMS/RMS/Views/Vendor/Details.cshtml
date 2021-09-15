@@ -1,0 +1,40 @@
+﻿@model RMS.Model.viewModes.VendorDTOs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+
+<div class="container" style="margin-top: 2%;">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/Vendor" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Vendor Details</samp>
+            </div>
+            <div class="card-body">
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Vendor Name</label>   <br />
+                    @Html.DisplayFor(model => model.VendorName)
+
+                </div>
+                <div>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.VendorID })</spam>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.VendorID })</spam>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

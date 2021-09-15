@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RMS.Model.viewModes.BookingDTOs>
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<div id="PlaceHolderHere"></div>
+<div class="col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6>Booking </h6>
+            <a type="button" class="btn btn-primary" href="/Booking/Create">
+                Create
+            </a>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TableNumber</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CustomerID</th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var booking in Model)
+                        {
+                        <tr class="text-center">
+                            <td>
+                                <div class="d-flex px-3 py-1">
+
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">@booking.Date</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex px-3 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">@booking.Description</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex px-3 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">@booking.Customer</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex px-3 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">@booking.Table</h6>
+                                    </div>
+                                </div>
+                            </td>
+
+
+                            <td class="align-middle" style="float:right;">
+
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="/booking/Delete/@booking.BookingID"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                <a class="btn btn-link text-dark px-3 mb-0" href="/booking/Edit/@booking.BookingID"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                <a class="btn btn-link text-dark px-3 mb-0" href="/booking/Details/@booking.BookingID"><i class="fas fa-file-alt text-dark me-2" aria-hidden="true"></i>Details</a>
+
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

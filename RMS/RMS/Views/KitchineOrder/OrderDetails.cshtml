@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RMS.Model.viewModes.OrderDetailsDTOs>
+
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12">
+
+ 
+    <div class="card mb-4">
+        <span>
+            <a href="/KitchineOrder" style=" float:left;">
+                <i class="fa fa-arrow-left" style="font-size:25px;"></i>
+            </a>
+        </span>
+        <div class="card-header pb-0">
+            <h4 class="text-center"> Order  </h4>
+            <p>Order No: @Model.FirstOrDefault().OrderCartID</p>
+            <p>Order Date: @Model.FirstOrDefault().OrderDate</p>
+            <p>Customer Name: @Model.FirstOrDefault().CustomerName</p>
+
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dish Name</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quatity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@category.MenuName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@category.Quantity</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box-shadow">@Html.ActionLink("Order Completed ", "Edit", new { orderId = Model.FirstOrDefault().OrderCartID })</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .box-shadow {
+        box-shadow: 4px 3px 8px 1px #969696;
+        -webkit-box-shadow: 4px 3px 8px 1px #969696;
+        text-align: center;
+        margin-top: 5%;
+        border-radius: 2%;
+        float: right;
+        padding: 1% 5% 1% 5%;
+        color: white;
+        margin-right: 2%;
+        margin-bottom: 2%;
+    }
+</style>

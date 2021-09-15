@@ -1,0 +1,82 @@
+﻿@model RMS.Model.viewModes.OrderCartsDTOs
+
+@{
+    ViewBag.Title = "OrderCart";
+}
+
+@using (Html.BeginForm("AddOrder", "OrderCart", FormMethod.Post))
+{
+    <div class=" col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6 class="text-center"> ORDER CART </h6>
+
+                <div class="row">
+                    <div class="col">
+                        <label style="font-weight: bold;font-size: 1.3em;">Customer</label>   <br />
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.CustomerNames, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                    </div>
+                    <div class="col">
+                        <label style="font-weight: bold;font-size: 1.3em;">Table</label>   <br />
+                        @Html.ValidationMessageFor(model => model.TableID, "", new { @class = "text-danger" })
+
+                        @Html.DropDownListFor(x => x.TableID, new SelectList(Model.TableNames, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+
+                    
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> MenuName </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Quantity </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Price </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Total </th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @Html.EditorFor(x => x.Carts)
+                            <tr style="border-top: 2px solid maroon">
+                                <td colspan="4" style="text-align:right">
+                                    <h3> TotalAmount</h3>
+                                </td>
+                                <td style="text-align:right">
+                                    <h3>@Model.Total.ToString("#,##0.00")</h3>
+                                </td>
+                            </tr>
+                            <tr style="text-align:right">
+                                <td colspan="5">
+                                    @* @Html.ActionLink("Save", "Index", "OrderCart", new { @class = "btn btn-primary" })*@
+                                    <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                            <tr style="text-align:right">
+                                <td colspan="5">
+                                    @Html.ActionLink("Back", "Index", "OrderCart", new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

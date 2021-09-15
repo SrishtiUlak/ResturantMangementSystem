@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RMS.Model.viewModes.InvoiceIndexDTOs>
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="col-12">
+
+
+    <div class="card mb-4">
+        <span>
+            <a href="/Invoice" style="float: left; margin-left: 3%; margin-top: 3% ">
+                <i class="fa fa-arrow-left" style="font-size:30px;"></i>
+            </a>
+        </span>
+        <div class="card-header pb-0">
+            <h4 class="text-center"> Order  </h4>
+            <p>Order Date: @Model.FirstOrDefault().OrderID</p>
+            <p>Order Date: @Model.FirstOrDefault().OrderDate</p>
+            <p>Customer Name: @Model.FirstOrDefault().CustomerName</p>
+            <p>Table Name: @Model.FirstOrDefault().TableName</p>
+
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quatity</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dish in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@dish.Dish</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@dish.Quantity</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@dish.Price</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <h5 style="float:right; margin-right:3%">Total: @Model.FirstOrDefault().Total</h5>
+            <div class="box-shadow">@Html.ActionLink("Order Completed", "Edit", new { invoice = Model.FirstOrDefault().InvoiceID })</div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .box-shadow {
+        box-shadow: 4px 3px 8px 1px #969696;
+        -webkit-box-shadow: 4px 3px 8px 1px #969696;
+        text-align: center;
+        margin-top: 5%;
+        border-radius: 2%;
+    }
+</style>

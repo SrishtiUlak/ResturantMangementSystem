@@ -1,0 +1,46 @@
+﻿@model RMS.Model.viewModes.DishCategoryDTOs
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.DishCategoryID)
+    <div class="container" style="margin-top: 2%;">
+        <div class="mx-auto">
+            <div class="card">
+                <div class="form-horizontal">
+
+                    <div class="card-header text-center pt-4">
+                        <span>
+                            <a href="/DishCategory" style=" float:left;">
+                                <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                            </a>
+                        </span>
+                        <samp style="font-size: 30px; font-weight: bold; color:black;">Edit Dish Category</samp>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+
+                            <label style="font-weight: bold;font-size: 1.3em;">Dish Category Name</label>   <br />
+                            @Html.ValidationMessageFor(model => model.DishCategoryName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.DishCategoryName, "", new { @class = "form-control", @placeholder = "Enter Menu Name" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

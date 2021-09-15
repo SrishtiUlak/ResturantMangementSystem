@@ -1,0 +1,55 @@
+﻿@model RMS.Model.viewModes.BookingDTOs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container" style="margin-top: 2%;">
+    <div class=" mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/InventoryProduct" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Booking Details</samp>
+            </div>
+
+                <dt>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TableNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TableNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+        </div>
+
+    </div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

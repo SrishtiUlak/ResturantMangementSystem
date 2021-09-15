@@ -1,0 +1,54 @@
+﻿@model RMS.Model.viewModes.KitchineOrderDTOs
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.OrderCartID)
+    @Html.HiddenFor(x => x.OrderDate)
+    @Html.HiddenFor(x => x.OrderNumber)
+    <div class="container" style="margin-top: 2%;">
+        <div class="mx-auto">
+            <div class="card">
+                <div class="form-horizontal">
+                    <div class="card-header text-center pt-4">
+                        <span>
+                            <a href="/KitchineOrder" style=" float:left;">
+                                <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                            </a>
+                        </span>
+                        <samp style="font-size: 30px; font-weight: bold; color:black;">Edit Dish Category</samp>
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.OrderStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.OrderStatus, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OrderStatus, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

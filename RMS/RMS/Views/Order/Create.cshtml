@@ -1,0 +1,159 @@
+﻿
+
+@model RMS.Model.viewModes.OrderDTOs
+    @{ 
+        ViewBag.Title = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+<div class="container" style="margin-top: 2%;">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/Order" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;"> Stock Order</samp>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+
+                    <div class="mb-3">
+                        <label class="control-label" for="OrderTime">Order Time</label>
+                        <input class="form-control timepicker" type="time" data-val="true" data-val-required="The Order Time field is required." id="OrderTime" name="OrderTime" value="00:00:00.000" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="OrderTime" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label" for="OrderDate">Order Date</label>
+                        <input class="form-control datepicker" type="date" data-val="true" data-val-required="The Order Date field is required." id="OrderDate" name="OrderDate" placeholder="dd/mm/yyy" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="OrderDate" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label style="font-weight: bold;font-size: 1.3em;"> Vendor </label>   <br />
+                        @Html.ValidationMessageFor(model => model.VendorID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.VendorID, new SelectList(Model.Vendors, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                    </div>
+                    <div class="mb-3">
+                        <label style="font-weight: bold;font-size: 1.3em;">Order Name</label>   <br />
+                        @Html.ValidationMessageFor(model => model.OrderName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.OrderName, "", new { @class = "form-control", @placeholder = "Enter Order Name" })
+
+                    </div>
+
+                    <div><a class="btn btn-primary" href="#" id="addNew">Add New Orders</a></div>
+                    <table class="table table-bordered" id="dataTable" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Sub Total</th>
+                        </tr>
+
+                        @{
+                            int j = 0;
+                            foreach (var i in Model.OrderItems)
+                            {
+                                <tr style=" border:1px solid black">
+                                    <td>
+                                        <select asp-for="OrderItems[@j].InventoryProductID" class="form-control" name="OrderItems[@j].InventoryProductID" id="dd1Order">
+
+
+                                            @foreach (var order in Model.DDItems)
+                                            {
+                                                <option data-id="@order.Price" value="@order.Id" id="@order.Id">@order.Name</option>
+
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>@Html.TextBox("OrderItems[" + j + "].Quantity", i.Quantity, new { @class = "form-control", id = "txtQuantity" })</td>
+                                    <td>@Html.TextBox("OrderItems[" + j + "].Price", i.Price, new { @class = "form-control", id = "txtPrice" })</td>
+                                    <td>@Html.TextBox("OrderItems[" + j + "].SubTotal", i.SubTotal, new { @class = "form-control", id = "txtSubTotal" })</td>
+                                    <td>
+                                        @if (j > 0)
+                                        {
+                                            <a href="#" class="btn btn-danger remove">Remove</a>
+                                        }
+                                    </td>
+                                </tr>
+                                j++;
+                            }
+                        }
+
+                    </table>
+
+                    <div class="text-center">
+                        <input type="submit" class="btn bg-gradient-primary mt-4 w-100" value="Create" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back" ,"Index", "Order",new {@class="btn btn-primary" })
+   
+</div>
+
+
+@section script
+{
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            //Add new row
+            $("#addNew").click(function (e) {
+                e.preventDefault();
+                var $tableBody = $("#dataTable");
+                var $trLast = $tableBody.find("tr:last");
+                var $trNew = $trLast.clone();
+                var suffix = $trNew.find(':input:first').attr('name').match(/\d+/);
+                $trNew.find("td:last").html('<a href="#" class="btn btn-danger remove">Remove</a>');
+                $.each($trNew.find(':input'), function (i, val) {
+                    // Replaced Name
+                    var previous = '[' + parseInt(suffix) + ']';
+                    var later = '[' + (parseInt(suffix) + 1) + ']';
+                    var oldN = $(this).attr('name');
+                    var newN = oldN.replace(previous, later);
+                    $(this).attr('name', newN);
+
+                    $(this).removeClass("input-validation-error");
+
+                });
+                $trLast.after($trNew);
+
+            });
+            $(document).on('click', 'a.remove', function () {
+
+                $(this).parent().parent().remove();
+            });
+            $(document).on('change', '#txtQuantity', function () {
+
+                var quantity = $(this).val()
+                var price = $(this).closest('tr').find('input#txtPrice').val();
+                $(this).closest('tr').find('input#txtSubTotal').val(parseFloat(quantity) * parseFloat(price));
+
+            })
+            $(document).on('change', '#txtPrice', function () {
+                var quantity = $(this).closest('tr').find('input#txtQuantity').val();
+                var price = $(this).val()
+
+                $(this).closest('tr').find('input#txtSubTotal').val(parseFloat(quantity) * parseFloat(price));
+
+            })
+
+            $(document).on('change', '#dd1Order', function () {
+
+                var price = $('option:selected', this).data("id");
+                $(this).closest('tr').find('input#txtPrice').val(price);
+            })
+
+        });
+    </script>
+}

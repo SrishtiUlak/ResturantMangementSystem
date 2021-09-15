@@ -1,0 +1,129 @@
+﻿@model RMS.Model.viewModes.UserDTOs
+
+@{
+    Layout = null;
+}
+
+<!Doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href=".~/Content/Login/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/Content/Login/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Login/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Content/Login/css/style.css">
+
+    <title>Register</title>
+
+    <style>
+        h3::after {
+            content: "";
+            display: block;
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: 4px solid #cb0c9f;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="d-lg-flex half">
+        <div class="bg " style="background-image: url('@Url.Content("~/Content/Login/images/bg_3.jpg")');"></div>
+        <div class="contents ">
+
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-7">
+                        <h3 style="text-align: center;">Register to <strong>RMS </strong></h3>
+
+                        <form method="post">
+                            <h7 class="text-center text-danger">@ViewBag.Message</h7>
+                            <div class="row" style="padding-bottom: 0.7em;">
+                                <div class="col">
+                                    <label style="font-weight: bold;font-size: 1em;">First Name </label>
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(x => x.FirstName, "", new { @class = "form-control", @placeholder = "Enter First Name" })
+                                </div>
+                                <div class="col">
+                                    <label style="font-weight: bold;font-size: 1em;">Last Name </label>
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(x => x.LastName, "", new { @class = "form-control", @placeholder = "Enter Last Name " })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label style="font-weight: bold; font-size: 1em;">User Name</label>   <br />
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(x => x.UserName, "", new { @class = "form-control", @placeholder = "Enter User Name" })
+                                </div>
+                                <div class="col">
+                                    <label style="font-weight: bold;font-size: 1em;">User Type</label>   <br />
+                                    @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label style="font-weight: bold; font-size: 1em;">Email</label>   <br />
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(x => x.Email, "", new { @class = "form-control", @placeholder = "Enter Email" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label style="font-weight: bold;font-size: 1em;">Password</label>   <br />
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(x => x.Password, "", new { @class = "form-control", @placeholder = "Enter Password", @type = "password" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label style="font-weight: bold;font-size: 1em;">Conform-Password</label>   <br />
+                                <input class="form-control" type="password" name="ConfirmPassword" id="ConfirmPassword" , placeholder="Confirm Password" required />
+                            </div>
+                            <div class="row" style="padding-bottom: 0.7em;">
+                                <div class="col">
+                                    <label style="font-weight: bold; font-size: 1em; ">Phone Number</label>   <br />
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(x => x.PhoneNumber, "", new { @class = "form-control", @placeholder = "Enter Phone Number" })
+                                </div>
+
+
+                                <div class="col">
+                                    <label style="font-weight: bold;font-size: 1em;">Address</label>   <br />
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(x => x.Address, "", new { @class = "form-control", @placeholder = "Enter Address" })
+                                </div>
+                            </div>
+
+
+
+                            <input type="submit" value="Log In" class="btn btn-block btn-primary">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="~/Content/Login/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Login/js/popper.min.js"></script>
+    <script src="~/Content/Login/js/bootstrap.min.js"></script>
+    <script src="~/Content/Login/js/main.js"></script>
+</body>
+</html>

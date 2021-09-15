@@ -1,0 +1,24 @@
+﻿@model RMS.Model.viewModes.CartDTOs
+@using HtmlHelpers.BeginCollectionItem
+@using (Html.BeginCollectionItem("Carts"))
+{
+    <tr class="text-center">
+       
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.MenuName)
+            @Html.HiddenFor(x => x.MenuId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Quantity)
+            @Html.HiddenFor(x => x.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.UnitPrice)
+            @Html.HiddenFor(x => x.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Total)
+            @Html.HiddenFor(x => x.Total)
+        </td>
+    </tr>
+}

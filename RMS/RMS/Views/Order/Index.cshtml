@@ -1,0 +1,100 @@
+﻿@model IEnumerable<RMS.Model.viewModes.OrderItemsDTOs>
+
+
+
+@{ ViewBag.Title = "Index"; }
+
+
+
+<style>
+    .box-shadow {
+        box-shadow: 4px 3px 8px 1px #969696;
+        -webkit-box-shadow: 4px 3px 8px 1px #969696;
+        text-align: center;
+        margin-top: 5%;
+        border-radius: 2%;
+    }
+</style>
+<div class="col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+
+
+
+            <h6 class="text-center"> STOCK ORDER</h6>
+            <a type="button" class="btn btn-primary" href="/Order/Create">
+
+
+
+                Create
+            </a>
+        </div>
+
+
+
+
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Vendor </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderDate</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderName</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Total</th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+
+
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Vendor</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.OrderDate</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.OrderName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Total</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class=" px-3 py-1 box-shadow">
+                                    @Html.ActionLink("Bill", "Details", new { orderCartID = @item.OrderID })
+                                </td>
+                            </tr>
+
+
+                        }
+                    </tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

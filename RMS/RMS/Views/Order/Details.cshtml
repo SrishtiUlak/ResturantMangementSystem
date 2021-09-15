@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RMS.Model.viewModes.OrderViews>
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="col-12">
+
+
+    <div class="card mb-4">
+        <span>
+            <a href="/Order" style="float: left; margin-left: 3%; margin-top: 3% ">
+                <i class="fa fa-arrow-left" style="font-size:30px;"></i>
+            </a>
+        </span>
+        <div class="card-header pb-0">
+            <h4 class="text-center"> Order  </h4>
+            <p>Order No: @Model.FirstOrDefault().VenderName</p>
+            <p>Order Date: @Model.FirstOrDefault().OrderDate</p>
+            <p>Customer Name: @Model.FirstOrDefault().OrderName</p>
+
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quatity</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@category.ProductsName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@category.Quantity</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" px-3 py-1">
+                                        <div class="justify-content-center">
+                                            <h6 class="mb-0 text-sm">@category.Price</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <h5 style="float:right; margin-right:3%">Total: @Model.FirstOrDefault().Total</h5>
+        </div>
+        
+    </div>
+</div>

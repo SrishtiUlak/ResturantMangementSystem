@@ -1,0 +1,185 @@
+﻿@model RMS.Model.viewModes.UserDTOs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container" style="margin-top: 2%;">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/User" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">User Details </samp>
+            </div>
+            <div class="card-body">
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">First Name</label>   <br />
+                    @Html.DisplayFor(model => model.FirstName)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Last Name</label>   <br />
+                    @Html.DisplayFor(model => model.LastName)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">User Name</label>   <br />
+                    @Html.DisplayFor(model => model.UserName)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Email</label>   <br />
+                    @Html.DisplayFor(model => model.Email)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Password</label>   <br />
+                    @Html.DisplayFor(model => model.Password)
+
+                </div>
+
+                @*<div class="mb-3">
+
+            <label style="font-weight: bold;font-size: 1.3em;">Email</label>   <br />
+            @Html.DisplayFor(model => model.Email)
+
+        </div>*@
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Confirm-Password</label>   <br />
+                    @Html.DisplayFor(model => model.Password)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Phone Number</label>   <br />
+                    @Html.DisplayFor(model => model.PhoneNumber)
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;">Address</label>   <br />
+                    @Html.DisplayFor(model => model.Address)
+
+                </div>
+
+
+                <div class="mb-3">
+
+
+
+                    <label style="font-weight: bold;font-size: 1.3em;">User Type</label>   <br />
+                    @Html.DisplayFor(model => model.UserType)
+
+                </div>
+                <div>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.UserId })</spam>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.UserId })</spam>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<dl class="card-body">
+    <dt>
+        @Html.DisplayNameFor(model => model.UserId)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserId)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.PhoneNumber)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.UserName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Password)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Password)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Address)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Address)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.UserTypeID)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserTypeID)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.UserType)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserType)
+    </dd>
+
+</dl>*@
